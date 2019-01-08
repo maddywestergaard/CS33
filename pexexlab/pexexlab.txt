@@ -1,0 +1,40 @@
+GATHER INSTRUCTION TRACES
+
+gdb ~eggert/bin64/bin/emacs-26.1
+entered into gdb for this executable
+
+(gdb) set disassemble-next-line-on
+(gdb) set logging on	//puts all the debug info into a file
+(gdb) b Ftimes    //sets breakpoint at Ftimes
+(gdb) r emacs -Q -batch -eval '(print (* 1250284240 -1844255039))' // runs the multiplication
+
+(gdb) si	    // next step of assembly
+(gdb) info registers // gets the info for all the registers
+(gdb) x 0x[memlocation]     // gets the value at that mem location-only necessary when the memory is being changed
+
+above steps are repeated until return q
+Then enter into the log text file, gdb.txt
+reformat according to the spec
+
+
+EXAMINE INTEGER OVERFLOW HANDLING
+
+emacs testovf.c   //then copy and pasted the code into this file
+export PATH=/usr/local/cs/bin:$PATH  // -fsanitize=undefined doesnt work unless i do this
+gcc -O2 -S testovf.c
+emacs testovf.s  //copy and pasted contents into testovf.txt
+gcc -O2 -fwrapv -S testovf.c
+emacs testovf.s   // copy and pasted contents into testovf.txt
+gcc -O2 -fsanitize=undefined -S testovf.c
+emacs testovf.s   // copy and pasted contents into testovf.txt
+
+
+A FEW MORE QUESTIONS
+
+my step by step process is outlined in the answers.txt file!
+
+
+
+
+
+

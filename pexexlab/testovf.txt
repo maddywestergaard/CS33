@@ -1,0 +1,71 @@
+gcc -O2 -S testovf.c
+        .file   "testovf.c"
+        .text
+        .p2align 4,,15
+        .globl  testovf
+        .type   testovf, @function
+testovf:
+.LFB0:
+        .cfi_startproc
+        xorl    %eax, %eax
+        ret
+        .cfi_endproc
+.LFE0:
+        .size   testovf, .-testovf
+        .ident  "GCC: (GNU) 8.2.0"
+        .section        .note.GNU-stack,"",@progbits
+
+
+gcc -O2 -fwrapv -S testovf.c
+        .file   "testovf.c"
+        .text
+        .p2align 4,,15
+        .globl  testovf
+        .type   testovf, @function
+testovf:
+.LFB0:
+        .cfi_startproc
+        movabsq $9223372036854775807, %rax
+        addq    %rdi, %rax
+        cmpq    %rdi, %rax
+        setl    %al
+        ret
+        .cfi_endproc
+.LFE0:
+        .size   testovf, .-testovf
+        .ident  "GCC: (GNU) 4.8.5 20150623 (Red Hat 4.8.5-28)"
+        .section        .note.GNU-stack,"",@progbits
+
+
+
+gcc -O2 -fsanitize=undefined -S testovf.c
+        .file   "testovf.c"
+        .text
+        .p2align 4,,15
+        .globl  testovf
+        .type   testovf, @function
+testovf:
+.LFB0:
+        .cfi_startproc
+        xorl    %eax, %eax
+        ret
+        .cfi_endproc
+.LFE0:
+        .size   testovf, .-testovf
+        .ident  "GCC: (GNU) 8.2.0"
+        .section        .note.GNU-stack,"",@progbits
+
+
+-O2 and -O2 -fsanitize=undefined produces the same assembly code.
+They both xor eax against itself, which will always return 0.
+This is because 9223372036854775807 is too large of a number and
+will overflow.
+
+
+-O2 -fwrapv produces the code that one would expect to see. It
+moves the number getting added to n to rax, then adds them
+together, then compares it against n, then sets the return value
+to the output of that. This is because the -fwrapv prevents
+overflow, so it just acts like a normal function even though the
+operation would normally produce overflow.
+

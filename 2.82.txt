@@ -1,0 +1,7 @@
+ A. FALSE. consider if x is TMin and y is 0
+ B. TRUE. Right shifting by 4 is the same as multiplying by 2 to the 4th power, which is 16. According to the distributive property, the equation is now 16x + 16y + y -x== 17y +15x. This is true.
+ C. TRUE. ~x = -x - 1; ~y = -y - 1; ~(x+y) = -(x+y) -1; Therefore,  ~x+~y+1 = -x-y-1 = -(x+y) -1 = ~(x+y)
+ D. TRUE. this will always be true due to the distributive property.
+ E. TRUE. (x>>2) rounds to negative infinity if x is odd, so then right shifting by 2 will make the left side less than the right side.
+ F. FALSE. the second expression on the right side of the equals sign is always 0, so x>>1 == ux >>1. however if x is negative then this is not true.
+ G. TRUE. binary 7 is 00111, so x&7 keeps the last 3 digits of x, which can represent numbers 0-7. x%8 will never be a number greater than 7, so this is true.

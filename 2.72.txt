@@ -1,0 +1,9 @@
+A. The if statement always returns true because sizeof returns an unsigned value, so it's never less than 0. Adding a signed and unsigned value will default to an unsigned addition, so it won't be less than 0.
+
+B. We could fix it by casting the sizeof() function to int as shown:
+
+void copy_int(int val, void *buf, int maxbytes)
+{
+    if (maxbytes - (int)sizeof(val) >= 0)
+        memcpy(buf, (void*) &val, sizeof(val));
+}

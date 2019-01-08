@@ -1,0 +1,25 @@
+A. TRUE
+This is true because casting the int to double will not lose any precison.
+Then converting them both to float will result in the same number. Casting
+doubles to floats could result in infinity overflow, while casting ints to 
+floats will not, but in this instance that won't happen since x was an int 
+before being cast as a double in the function.
+
+B. FALSE
+This requires the -fwrapv due to the subtraction.
+This is false in the case of x=INT_MIN y=1. the doubles won't overflow due to 
+the increased precision, but the ints cast as doubles could overflow and wrap
+around to become a positive number.
+
+C. TRUE
+This is true since all the ints converted to doubles has no rounding issues.
+The addition is associative in this case. -fwrapv in this case will result in
+the addition overflows it will become negative, but they will still be equal.
+
+D. FALSE
+This is false due to rounding issues. The dx*dy could round and cause a
+different answer than the rounding for dy*dz. 
+ 
+E. FALSE
+This is false if dx=0 and dz=1. dividing by 0 would b NaN, while dividing 1 by
+1 would be 1.

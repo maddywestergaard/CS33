@@ -1,0 +1,16 @@
+12.17
+
+A. Nothing prints because the exit(0) is called before
+the thread routine can execute.
+
+B. The two functions are:
+pthread_join (tid, NULL); or
+pthread_exit (NULL);
+
+
+12.25
+
+Yes, this is a safe function. It is safe because it uses sem_t mutex,
+which protects lines 23-25 from being executed by more than one thread at
+a time. 
+It is not re-entrant, because of the use of the global variable byte_cnt.

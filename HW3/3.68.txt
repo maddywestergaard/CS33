@@ -1,0 +1,17 @@
+A is 9
+B is 5
+
+I got this by drawing out the alignment for both str1 and str2
+from the assembly code, we know that 
+q->t = %rsi + 8
+q->u = %rsi + 32
+p->y = %rdi + 184
+
+
+since t is at offset 8, we know that char array[B] is in offset 0-7, so then B has to be between 5 and 8 (since chars take up 1 byte).
+
+since u is at offset 32, we know that short s[A] is between 12-32 (since int t takes up 4 bytes). So then A has to be 9 or 10. 
+
+since y is at 184, int x[A][B] is in offset 0-183, so A*B = 45.
+
+Given this information, A has to be 9 and B has to be 5 since 45 is not divisible by 10. 

@@ -1,0 +1,10 @@
+sizeof (struct { char a; char _Alignas (8) b; char c; })
+
+a - - - - - - - b c -  -  -  -  -  -  -  
+0.1.2.3.4.5.6.7.8.9.10.11.12.13.14.15.16
+
+
+It will return 16 due to the diagram above. 
+a takes up 1 byte, then there are 7 empty bytes to set the next offset to 8, since the _Alignas (8) makes the alignment of b 8. 
+then b takes up 1 byte since it is a char.
+then c takes up 1 byte at offset 9, followed by 7 empty bytes since the size of the struct has to be a multiple of 16.

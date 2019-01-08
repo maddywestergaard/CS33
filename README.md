@@ -3,13 +3,21 @@ This is all my coursework from CS33 with Professor Eggert at UCLA. Enjoy! This i
 
 Homework
 Homework 1	90 / 100
+
 Homework 2	99 / 100
+
 Homework 3	100 / 100
+
 Homework 4	100 / 100
+
 Homework 5	100 / 100
+
 
 Lab
 Lab 1	100 / 100
+
 Lab 2	100 / 100
+
 Lab 3	100 / 100
+
 Lab 4	96 / 100
